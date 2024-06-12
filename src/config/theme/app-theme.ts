@@ -32,4 +32,20 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '200',
   },
+  cardButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  button: {
+    backgroundColor: 'red',
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+  },
 });
