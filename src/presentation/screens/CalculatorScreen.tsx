@@ -11,34 +11,72 @@ export const CalculatorScreen = () => {
       </View>
 
       <View style={styles.cardButton}>
-        <CalculatorButton label="C" color={colors.lightGray} />
-        <CalculatorButton label="+/-" color={colors.lightGray} />
-        <CalculatorButton label="del" color={colors.lightGray} />
-        <CalculatorButton label="/" color={colors.orange} />
+        <CalculatorButton
+          onPress={() => console.log('C')}
+          label="C"
+          color={colors.lightGray}
+          blackText
+        />
+        <CalculatorButton
+          onPress={() => console.log('+/-')}
+          label="+/-"
+          color={colors.lightGray}
+          blackText
+        />
+        <CalculatorButton
+          onPress={() => console.log('del')}
+          label="del"
+          color={colors.lightGray}
+          blackText
+        />
+        <CalculatorButton
+          onPress={() => console.log('&#247;')}
+          label="&#247;"
+          color={colors.orange}
+        />
       </View>
       <View style={styles.cardButton}>
-        <CalculatorButton label="7" />
-        <CalculatorButton label="8" />
-        <CalculatorButton label="9" />
-        <CalculatorButton label="x" color={colors.orange} />
+        <CalculatorButton onPress={() => console.log('7')} label="7" />
+        <CalculatorButton onPress={() => console.log('8')} label="8" />
+        <CalculatorButton onPress={() => console.log('9')} label="9" />
+        <CalculatorButton
+          onPress={() => console.log('x')}
+          label="x"
+          color={colors.orange}
+        />
       </View>
       <View style={styles.cardButton}>
-        <CalculatorButton label="4" />
-        <CalculatorButton label="5" />
-        <CalculatorButton label="6" />
-        <CalculatorButton label="-" color={colors.orange} />
+        <CalculatorButton onPress={() => console.log('4')} label="4" />
+        <CalculatorButton onPress={() => console.log('5')} label="5" />
+        <CalculatorButton onPress={() => console.log('6')} label="6" />
+        <CalculatorButton
+          onPress={() => console.log('-')}
+          label="-"
+          color={colors.orange}
+        />
       </View>
       <View style={styles.cardButton}>
-        <CalculatorButton label="1" />
-        <CalculatorButton label="2" />
-        <CalculatorButton label="3" />
-        <CalculatorButton label="+" color={colors.orange} />
+        <CalculatorButton onPress={() => console.log('1')} label="1" />
+        <CalculatorButton onPress={() => console.log('2')} label="2" />
+        <CalculatorButton onPress={() => console.log('3')} label="3" />
+        <CalculatorButton
+          onPress={() => console.log('+')}
+          label="+"
+          color={colors.orange}
+        />
       </View>
       <View style={styles.cardButton}>
-        <CalculatorButton label="00" />
-        <CalculatorButton label="0" />
-        <CalculatorButton label="." />
-        <CalculatorButton label="=" color={colors.orange} />
+        <CalculatorButton
+          onPress={() => console.log('0')}
+          label="0"
+          doubleSize
+        />
+        <CalculatorButton onPress={() => console.log('.')} label="." />
+        <CalculatorButton
+          onPress={() => console.log('=')}
+          label="="
+          color={colors.orange}
+        />
       </View>
     </View>
   );
