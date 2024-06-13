@@ -35,17 +35,20 @@ export const styles = StyleSheet.create({
   cardButton: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginBottom: 3,
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: colors.darkGray,
     width: 80,
     height: 80,
     borderRadius: 100,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 5,
   },
   buttonText: {
     color: 'white',
+    fontSize: 25,
   },
 });
