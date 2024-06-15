@@ -24,6 +24,11 @@ export const useCalculator = () => {
 
   const lastOperationRef = useRef<Operator>();
 
+  useEffect(() => {
+    const result = calculateSubResult();
+    setPrevNumber(`${result}`);
+  }, [formula]);
+
   const clean = () => {
     setNumber('0');
     setPrevNumber('0');
@@ -82,6 +87,7 @@ export const useCalculator = () => {
   };
 
   const setLastNumber = () => {
+    calculateResult();
     if (number.endsWith('.')) {
       setPrevNumber(number.slice(0, -1));
     } else {
@@ -121,13 +127,13 @@ export const useCalculator = () => {
         return number1 + number2;
 
       case Operator.substract:
-        return number2 - number1;
+        return number1 - number2;
 
       case Operator.multiply:
         return number1 * number2;
 
       case Operator.divide:
-        return number2 / number1;
+        return number1 / number2;
 
       default:
         throw new Error('Operator Not found!');
