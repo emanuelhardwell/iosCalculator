@@ -95,6 +95,32 @@ export const useCalculator = () => {
     lastOperationRef.current = Operator.divide;
   };
 
+  const calculateResult = () => {
+    const number1 = Number(number);
+    const number2 = Number(prevNumber);
+
+    switch (lastOperationRef.current) {
+      case Operator.add:
+        setNumber(`${number1 + number2}`);
+        break;
+      case Operator.substract:
+        setNumber(`${number2 - number1}`);
+        break;
+      case Operator.multiply:
+        setNumber(`${number1 * number2}`);
+        break;
+      case Operator.divide:
+        setNumber(`${number2 / number1}`);
+        break;
+
+      default:
+        throw new Error('Operator Not found!');
+        break;
+    }
+
+    setPrevNumber('');
+  };
+
   return {
     // properties
     number,
@@ -109,5 +135,6 @@ export const useCalculator = () => {
     substractOperation,
     multiplyOperation,
     divideOperation,
+    calculateResult,
   };
 };
