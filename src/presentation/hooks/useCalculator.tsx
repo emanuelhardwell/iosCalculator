@@ -1,21 +1,34 @@
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 enum Operator {
-  add,
-  substract,
-  multiply,
-  divide,
+  add = '+',
+  substract = '-',
+  multiply = 'x',
+  divide = '÷',
 }
 
 export const useCalculator = () => {
   const [number, setNumber] = useState<string>('0');
   const [prevNumber, setPrevNumber] = useState('0');
+  const [formula, setFormula] = useState<string>('');
+
+  useEffect(() => {
+    if (lastOperationRef.current) {
+      const firstFormulaPart = formula.split(' ').at(0);
+
+      setFormula(`${firstFormulaPart} ${lastOperationRef.current} ${number}`);
+    } else {
+      setFormula(number);
+    }
+  }, [number]);
 
   const lastOperationRef = useRef<Operator>();
 
   const clean = () => {
     setNumber('0');
     setPrevNumber('0');
+    setFormula('');
+    lastOperationRef.current = undefined;
   };
 
   const deleteOperation = () => {
@@ -95,36 +108,44 @@ export const useCalculator = () => {
     lastOperationRef.current = Operator.divide;
   };
 
-  const calculateResult = () => {
-    const number1 = Number(number);
-    const number2 = Number(prevNumber);
+  const calculateSubResult = (): number => {
+    const [no1, sign, no2] = formula.split(' ');
 
-    switch (lastOperationRef.current) {
+    const number1 = Number(no1);
+    const number2 = Number(no2);
+
+    if (isNaN(number2)) return number1;
+
+    switch (sign) {
       case Operator.add:
-        setNumber(`${number1 + number2}`);
-        break;
+        return number1 + number2;
+
       case Operator.substract:
-        setNumber(`${number2 - number1}`);
-        break;
+        return number2 - number1;
+
       case Operator.multiply:
-        setNumber(`${number1 * number2}`);
-        break;
+        return number1 * number2;
+
       case Operator.divide:
-        setNumber(`${number2 / number1}`);
-        break;
+        return number2 / number1;
 
       default:
         throw new Error('Operator Not found!');
-        break;
     }
+  };
 
-    setPrevNumber('');
+  const calculateResult = () => {
+    const result = calculateSubResult();
+    setFormula(`${result}`);
+    lastOperationRef.current = undefined;
+    setPrevNumber('0');
   };
 
   return {
     // properties
     number,
     prevNumber,
+    formula,
 
     // functions
     buildNumber,
